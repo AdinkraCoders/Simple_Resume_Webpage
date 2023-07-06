@@ -1,9 +1,19 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
+  --color-text-light-mode: #49515a;
+  --color-bg-light-mode: white;
+  --color-bg-shade0-light-mode: #fbfbff;
+  --color-bg-shade1-light-mode: #e9e9f9;
+
+
+
 }
 
 /* semantic color variables for this project */
 :root {
+  --color-text: var(--color-text-light-mode);
+  --color-bg-shade1: var(--color-bg-shade1-light-mode);
+
   /* --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -19,10 +29,14 @@
 
 /* semantic size variable for this project */
 :root {
-	--moderate-vertical-margin: 2vh;
-	--max-vertical-margin: 5vh;
+  --moderate-vertical-margin: 2vh;
+  --max-vertical-margin: 5vh;
+
+  --moderate-horizontal-margin: 2vw;
+  --max-horizontal-margin: 5vw;
 }
 
+/* This "prefers-color-scheme: dark" will override if user selected dark mode in their OS */
 @media (prefers-color-scheme: dark) {
   :root {
     /* --color-background: var(--vt-c-black);
@@ -32,8 +46,7 @@
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);
 
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2); */
+    --color-heading: var(--vt-c-text-dark-1); */
   }
 }
 
@@ -43,7 +56,7 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 body {
