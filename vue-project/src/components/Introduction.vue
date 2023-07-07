@@ -14,7 +14,7 @@
   display: block;
   height: 179px;
   width: 179px;
-  margin: var(--max-vertical-margin) auto var(--moderate-vertical-margin);
+  margin: 0 auto var(--moderate-vertical-margin);
 }
 
 .owner-name {

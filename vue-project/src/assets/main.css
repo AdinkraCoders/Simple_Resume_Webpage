@@ -1,11 +1,26 @@
 @import './base.css';
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+  font-size: 20px;
+}
+
 #app {
+  display: grid;
+  grid-template-columns: 1fr;
   /* max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
 
   font-weight: normal; */
+}
+
+#app > * {
+  padding: 2rem 2rem;
 }
 
 a,
@@ -22,14 +37,11 @@ a,
 }
 
 @media (min-width: 1024px) {
-  body {
-    /* display: flex;
-    place-items: center; */
+  #app {
+    grid-template-columns: 1fr 1fr;
   }
 
-  #app {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem; */
+  #app > * {
+	padding: 4rem 2rem;
   }
 }

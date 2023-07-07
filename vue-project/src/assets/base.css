@@ -5,8 +5,6 @@
   --color-bg-shade0-light-mode: #fbfbff;
   --color-bg-shade1-light-mode: #e9e9f9;
 
-
-
 }
 
 /* semantic color variables for this project */
@@ -50,14 +48,7 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-  font-size: 20px;
-}
+
 
 body {
   /* min-height: 100vh;

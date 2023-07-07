@@ -16,7 +16,6 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  transition: 0.5s;
 }
 
 ul > li:nth-of-type(odd) {
@@ -29,9 +28,9 @@ ul > li:nth-of-type(even) {
 
 ul > li {
   border-bottom: 1px solid rgb(221,221,221);
-  padding: 6px;
+  padding: 6px 8px;
   letter-spacing: 0.05em;
-  transition: 0.5s;
+  transition: padding 0.5s;
 }
 
 ul > li:hover {
@@ -50,18 +49,16 @@ ul > li:last-child {
     display: block;
 	position: relative;
 	top: 0;
-	width: 100vw;
+	width: 100%;
 	text-align: center;
   }
 
   ul > li {
-	display:inline-block;
-	position:relative;
-	background-color:#4c4c4c;
-	width: 10%;
+	display: inline-block;
+	position: relative;
+	width: 20%;
 	margin: 0;
 	padding: 5px 0;
-	transition: 0.5s;
   }
 
   ul > li:last-child {
