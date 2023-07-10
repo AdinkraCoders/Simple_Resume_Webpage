@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import Introduction  from '@/components/Introduction.vue'
 import SocialIcon from '@/components/SocialIcon.vue'
 import NavBuilder from '@/components/NavBuilder.vue'
+import SlideShow from '@/components/SlideShow.vue'
 </script>
 
 <template>
@@ -12,7 +13,7 @@ import NavBuilder from '@/components/NavBuilder.vue'
 	<NavBuilder />
   </header>
   <article>
-	  article
+	<SlideShow />
   </article>
   <footer>
 	  Designed with ❤️ by Daniel Uyi for 42 Schools Inception Project.
@@ -31,7 +32,7 @@ footer {
   background-color: var(--color-bg-shade1);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
   header {
     grid-row: 1;
     grid-column: 1;

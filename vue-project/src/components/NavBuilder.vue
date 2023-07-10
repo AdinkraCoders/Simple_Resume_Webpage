@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavHamburgerMenu from '@/components/NavHamburgerMenu.vue'
 import NavList from '@/components/NavList.vue'
+import { onMounted, onUnmounted } from 'vue'
 
 const hamburgerToggle = () => {
   let nav_lists = document.getElementById('nav-list');
@@ -12,7 +13,7 @@ const hamburgerToggle = () => {
   // slide out the bg color if nav bar was previously hidden, else hide
   opaque_bg.style["left"] = ( right === "-200px" ) ? "0" : "-130vw";
   // slide out the nav-menu items if right was previously hidden, else hide
-  nav_lists.style["right"] = ( right === "-200px" ) ? "var(--moderate-horizontal-margin)" : "-200px";
+  nav_lists.style["right"] = ( right === "-200px" ) ? "0px" : "-200px";
 }
 
 // the #nav-list CSS right: property hangs on its javascript assigned value 
@@ -20,16 +21,27 @@ const hamburgerToggle = () => {
 // Get screen width as adjustment is being made
 const canvasResize = () => {
   // Get realtime screen width as it is being resized
-  let current_screen_width = document.body.clientWidth;
+  let current_screen_width = window.innerWidth;
 
-  if ( current_screen_width >= 1024 ) { // error in achrome alignment fixed by changing to 1013
-    document.getElementById('nav-list').style["right"] = "0";
+  if ( current_screen_width >= 700 ) {
+    document.getElementById('nav-list').style["right"] = "0px";
 	document.getElementById('opaque_bg').style["left"] = "-130vw";
   }
 
 }
 // Attaching the event listener function for window's resize
-window.addEventListener("resize", canvasResize);
+// window.addEventListener("resize", canvasResize);
+
+// when this component is loaded
+onMounted(() => {
+  window.addEventListener("resize", canvasResize);
+})
+
+// when this component is droped
+onUnmounted(() => {
+  window.removeEventListener("resize", canvasResize);
+})
+
 </script>
 
 <template>
@@ -37,10 +49,10 @@ window.addEventListener("resize", canvasResize);
     <div class="hamburger" @click="hamburgerToggle">
       <NavHamburgerMenu />
     </div>
-    <div id="nav-list" @click="canvasResize">
+    <div id="nav-list">
     <NavList />
     </div>
-    <div id="opaque_bg"></div>
+    <div id="opaque_bg" @resize="canvasResize()" ></div>
   </nav>
 </template>
 
@@ -81,7 +93,7 @@ nav {
 }
 
 
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
   .hamburger {
     display: none;
   }

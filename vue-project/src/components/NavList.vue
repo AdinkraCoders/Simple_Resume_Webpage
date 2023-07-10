@@ -31,6 +31,7 @@ ul > li {
   padding: 6px 8px;
   letter-spacing: 0.05em;
   transition: padding 0.5s;
+  cursor: pointer;
 }
 
 ul > li:hover {
@@ -44,7 +45,7 @@ ul > li:last-child {
 	border-bottom-left-radius: 15px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
   ul {
     display: block;
 	position: relative;
@@ -56,7 +57,7 @@ ul > li:last-child {
   ul > li {
 	display: inline-block;
 	position: relative;
-	width: 20%;
+	width: 25%;
 	margin: 0;
 	padding: 5px 0;
   }

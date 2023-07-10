@@ -12,6 +12,7 @@
 #app {
   display: grid;
   grid-template-columns: 1fr;
+  align-items: center;
   /* max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -21,6 +22,7 @@
 
 #app > * {
   padding: 2rem 2rem;
+  overflow: hidden;
 }
 
 a,
@@ -36,7 +38,7 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 700px) {
   #app {
     grid-template-columns: 1fr 1fr;
   }
