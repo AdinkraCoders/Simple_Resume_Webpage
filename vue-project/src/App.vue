@@ -3,7 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 import Introduction  from '@/components/Introduction.vue'
 import SocialIcon from '@/components/SocialIcon.vue'
 import NavBuilder from '@/components/NavBuilder.vue'
-import SlideShow from '@/components/SlideShow.vue'
 </script>
 
 <template>
@@ -13,7 +12,7 @@ import SlideShow from '@/components/SlideShow.vue'
 	<NavBuilder />
   </header>
   <article>
-	<SlideShow />
+	<RouterView /> 
   </article>
   <footer>
 	  Designed with ❤️ by Daniel Uyi for 42 Schools Inception Project.

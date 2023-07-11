@@ -4,11 +4,11 @@ import NavList from '@/components/NavList.vue'
 import { onMounted, onUnmounted } from 'vue'
 
 const hamburgerToggle = () => {
-  let nav_lists = document.getElementById('nav-list');
-  let opaque_bg = document.getElementById('opaque_bg');
+  const nav_lists = document.getElementById('nav-list');
+  const opaque_bg = document.getElementById('opaque_bg');
 
-  let get_css_prop = getComputedStyle(nav_lists);
-  let right = get_css_prop.getPropertyValue("right");
+  const get_css_prop = getComputedStyle(nav_lists);
+  const right = get_css_prop.getPropertyValue("right");
 
   // slide out the bg color if nav bar was previously hidden, else hide
   opaque_bg.style["left"] = ( right === "-200px" ) ? "0" : "-130vw";
@@ -21,12 +21,14 @@ const hamburgerToggle = () => {
 // Get screen width as adjustment is being made
 const canvasResize = () => {
   // Get realtime screen width as it is being resized
-  let current_screen_width = window.innerWidth;
+  const current_screen_width = window.innerWidth;
 
   if ( current_screen_width >= 700 ) {
     document.getElementById('nav-list').style["right"] = "0px";
 	document.getElementById('opaque_bg').style["left"] = "-130vw";
   }
+  else
+	document.getElementById('nav-list').style["right"] = "-200px";
 
 }
 // Attaching the event listener function for window's resize
@@ -86,7 +88,7 @@ nav {
 #nav-list {
   display: block;
   position: fixed;
-  top: var(--max-vertical-margin);
+  top: 0;
   right: -200px;
   z-index: 2;
   transition: right 0.3s;

@@ -1,9 +1,13 @@
+<script setup lang="ts">
+  import { RouterLink } from 'vue-router'
+</script>
+
 <template>
   <ul>
-	<li>Home</li>
-	<li>About</li>
-	<li>Skills</li>
-	<li>Contact</li>
+	<li><RouterLink to="/">Home</RouterLink></li>
+	<li><RouterLink to="/about">About</RouterLink></li>
+	<li><RouterLink to="/skills">Skills</RouterLink></li>
+	<li><RouterLink to="/contact">Contact</RouterLink></li>
   </ul>
 </template>
 
@@ -15,15 +19,15 @@ ul {
   width: 200px;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0 ;
 }
 
 ul > li:nth-of-type(odd) {
-  background-color: var(--color-bg-shade1-light-mode);
+  background-color: var(--color-bg-shade1);
 }
 
 ul > li:nth-of-type(even) {
-  background-color: var(--color-bg-shade0-light-mode);
+  background-color: var(--color-bg-shade0);
 }
 
 ul > li {
@@ -34,15 +38,21 @@ ul > li {
   cursor: pointer;
 }
 
+ul > li > a {
+  text-decoration-line: none;
+}
+
 ul > li:hover {
 	padding-left: 4px;
 }
 
 ul > li:first-child {
-	border-top-left-radius: 15px;
+	border-top-left-radius: 0;
+	padding-top: 5vh;
 }
 ul > li:last-child {
-	border-bottom-left-radius: 15px;
+	border-top-right-radius: 0;
+	padding-bottom: 90vh;
 }
 
 @media (min-width: 700px) {
@@ -62,9 +72,14 @@ ul > li:last-child {
 	padding: 5px 0;
   }
 
+  ul > li:first-child {
+	border-top-left-radius: 15px;
+	padding-top: 0;
+  }
+
   ul > li:last-child {
 	border-top-right-radius: 15px;
-	border-bottom-left-radius: 0;
+	padding-bottom: 0;
   }
 }
 </style>

@@ -10,6 +10,7 @@
 /* semantic color variables for this project */
 :root {
   --color-text: var(--color-text-light-mode);
+  --color-bg-shade0: var(--color-bg-shade0-light-mode);
   --color-bg-shade1: var(--color-bg-shade1-light-mode);
 
   /* --color-background: var(--vt-c-white);

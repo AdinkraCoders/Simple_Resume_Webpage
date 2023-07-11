@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { onMounted, onUnmounted } from 'vue'
+  import SlideDescription from '@/components/SlideDescription.vue'
 
   // ********************************************************************
   // 						Globals Start								*
@@ -20,7 +21,7 @@
   const initialBackups = () => {
 	//1.
 	g_slideItem = document.getElementById('slide-items');
-	let leftTmp = getComputedStyle(g_slideItem).getPropertyValue("left");
+	const leftTmp = getComputedStyle(g_slideItem).getPropertyValue("left");
 	g_backupLeft = parseInt(leftTmp);
 
 	//2.
@@ -29,7 +30,7 @@
 	g_sliderWidth = parseInt(windowTmp);
 
 	//3.
-	let slideCount = document.getElementsByClassName('one-slide').length;
+	const slideCount = document.getElementsByClassName('one-slide').length;
 	g_minLeft = g_sliderWidth * (slideCount - 1) * -1;
   }
 
@@ -65,7 +66,7 @@
 	event.preventDefault();
 
 	// #slide-items.left cannot be greater than 0px or less than the last image slide
-	let diff = event.offsetX - g_startX;
+	const diff = event.offsetX - g_startX;
 	if ( ((g_backupLeft + diff) > 0) || ((g_backupLeft + diff) < g_minLeft) )
 	  return;
 
@@ -80,8 +81,8 @@
 
 	// set #slide-items.left to proper value if a drag occured
 	if ( g_currentLeft  && g_currentLeft != g_backupLeft ) {
-	  let roundUpLeft = g_currentLeft % g_sliderWidth;
-	  let roundDownLeft = g_sliderWidth + roundUpLeft;
+	  const roundUpLeft = g_currentLeft % g_sliderWidth;
+	  const roundDownLeft = g_sliderWidth + roundUpLeft;
 
 	  if ( g_currentLeft > g_backupLeft )
 		g_slideItem.style["left"] = (g_currentLeft - roundUpLeft) + "px"; // drag to right
@@ -100,35 +101,23 @@
   const slideLeft = () => {
 	initialBackups();
 
-	if ( ((g_backupLeft + g_sliderWidth) > 0) )
+	if ( ((g_backupLeft + g_sliderWidth) > 0) ) {
+	  resetBackups();
 	  return false;
+	}
 	
 	g_slideItem.style["left"] = (g_backupLeft + g_sliderWidth)+ "px";
 	resetBackups();
 	return true;
   }
 
-//   const removeWrongPx = (value) => {
-// 	let negativeWidth = g_sliderWidth - (g_sliderWidth * 2);
-
-// 	if ( ( value % negativeWidth) == -1 )
-// 	  return value;
-// 	else if ( ((value + 1) % negativeWidth) == -1 )
-// 	  return value + 1;
-// 	else if ( ((value + 2) % negativeWidth) == -1 )
-// 	  return value + 2;
-// 	else if ( ((value - 1) % negativeWidth) == -1 )
-// 	  return value - 1;
-// 	else if ( ((value - 2) % negativeWidth) == -1 )
-// 	  return value - 2;
-// 	return value;
-//   }
-
   const slideRight = () => {
 	initialBackups();
 
-	if ( ((g_backupLeft - g_sliderWidth) < g_minLeft) )
+	if ( ((g_backupLeft - g_sliderWidth) < g_minLeft) ) {
+	  resetBackups();
 	  return false;
+	}
 
 	g_slideItem.style["left"] = g_backupLeft - g_sliderWidth + "px";
 	resetBackups();
@@ -145,22 +134,14 @@
 	g_slideItem.style["left"] = 0;
 	resetBackups();
   }
-
-  // when this component is loaded
-  onMounted(() => {
-	window.addEventListener("resize", slideResize);
-  })
-
-  // when this component is droped
-  onUnmounted(() => {
-    window.removeEventListener("resize", slideResize);
-  })
   // ********************************************************************
   // 				Reset slides onResize Ends							*
   // ********************************************************************
-
-// ***************************************************************
+  // ********************************************************************
+  // 				Automatically show slides starts					*
+  // ********************************************************************
   let g_flag = true;
+
   const displaySlides = () => {
 	if ( g_flag )
 	  if ( ! slideLeft() )
@@ -170,32 +151,62 @@
 	  if ( ! slideRight() )
 	    g_flag = true;
   }
+  // ********************************************************************
+  // 				Automatically show slides Ends						*
+  // ********************************************************************
+  // ********************************************************************
+  // 				Event Listeners and Intervals Start					*
+  // ********************************************************************
+  let g_intervalId;
+  // when this component is loaded into DOM
+  onMounted(() => {
+	// So that #slide-items.left is reset to 0 on screen resize
+	window.addEventListener("resize", slideResize);
 
-  setInterval(displaySlides, 5000);
+    // So that #slide-items.left is auto-changed every 5 seconds
+	g_intervalId = setInterval(displaySlides, 5000);
+  })
+
+  // when this component is droped from DOM
+  onUnmounted(() => {
+    window.removeEventListener("resize", slideResize);
+
+	clearInterval(g_intervalId);
+  })
+  // ********************************************************************
+  // 				Event Listeners and Intervals Ends					*
+  // ********************************************************************
 </script>
 
 <template>
+  <div id="advert_box">
 	<div id="slider-window" @mousedown="(event) => mouseDown(event)" @mousemove="(event) => mouseMove(event)" @mouseup="(event) => mouseUp(event)" @mouseleave="(event) => mouseUp(event)" @resize="slideResize">
   	  <div id="slide-items">
-		<img class="one-slide" src="https://www.w3schools.com/w3css/img_nature_wide.jpg" />
-	  	<img class="one-slide" src="https://www.w3schools.com/w3css/img_snow_wide.jpg" />
-	  	<img class="one-slide" src="https://www.w3schools.com/w3css/img_mountains_wide.jpg" />
-		<img class="one-slide" src="https://www.w3schools.com/w3css/img_nature_wide.jpg" />
-	  	<img class="one-slide" src="https://www.w3schools.com/w3css/img_snow_wide.jpg" />
-	  	<img class="one-slide" src="https://www.w3schools.com/w3css/img_mountains_wide.jpg" />
+		<img class="one-slide" src="@/assets/images/1.jpg" />
+	  	<img class="one-slide" src="@/assets/images/2.jpg" />
+	  	<img class="one-slide" src="@/assets/images/3.jpg" />
+		<img class="one-slide" src="@/assets/images/4.jpg" />
+	  	<img class="one-slide" src="@/assets/images/1.jpg" />
+	  	<img class="one-slide" src="@/assets/images/2.jpg" />
+	  	<img class="one-slide" src="@/assets/images/3.jpg" />
+		<img class="one-slide" src="@/assets/images/4.jpg" />
 	  </div>
 	  <button class="slide-left" @click="slideLeft">&#10094;</button>
 	  <button class="slide-right" @click="slideRight">&#10095;</button>
     </div>
+	
+	<SlideDescription />
+  </div>
+
 </template>
 
 <style scoped>
 #slider-window {
-  display: inline-block;
+  display: block;
   border-radius: 10px;
   width: calc(50vw - 8rem);
   aspect-ratio: 2 / 3;
-  margin: 0 0;
+  margin: 0 auto;
   overflow: hidden;
   position: relative;
 }
@@ -204,7 +215,7 @@
   position: relative;
   top: 0;
   left: 0;
-  width: 3000px; /* must be greater than sum of width of all images in the slides */
+  width: 5000px; /* must be greater than sum of width of all images in the slides */
   height: auto;
   transition: left 0.2s;
 }
@@ -243,7 +254,6 @@
   background-color: #fff!important;
 }
 
-
 @media (min-width: 700px) {
   #slider-window {
 	width: calc(25vw - 4rem);
@@ -252,9 +262,7 @@
   #slide-items > img {
     width: calc(25vw - 4rem);
   }
-
 }
-
 
 </style>
 

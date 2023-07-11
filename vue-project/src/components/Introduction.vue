@@ -12,8 +12,8 @@
 <style scoped>
 .logo {
   display: block;
-  height: 179px;
-  width: 179px;
+  width: 30%;
+  aspect-ratio: 1 / 1;
   margin: 0 auto var(--moderate-vertical-margin);
 }
 
