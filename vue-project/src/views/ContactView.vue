@@ -1,3 +1,0 @@
-<template>
-  'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 'Contact' 
-</template>
